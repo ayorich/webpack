@@ -1,7 +1,7 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin"); //use for minifying bundle size
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //use for extracting css into a seperate bundle
-
+const { CleanWebpackPlugin } = require("clean-webpack-plugin"); //use for cleaning previous built from the dist folder before new builds
 module.exports = {
   entry: "./src/index.js",
   output: {
@@ -52,5 +52,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "styles.[contenthash].css",
     }),
+    new CleanWebpackPlugin(),
   ],
 };
