@@ -1,5 +1,4 @@
 const path = require("path");
-const TerserPlugin = require("terser-webpack-plugin"); //use for minifying bundle size
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //use for extracting css into a seperate bundle
 const { CleanWebpackPlugin } = require("clean-webpack-plugin"); //use for cleaning previous built from the dist folder before new builds
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -11,7 +10,7 @@ module.exports = {
     // publicPath: "dist/", //sets to auto from webpack 5
     publicPath: "",
   },
-  mode: "none",
+  mode: "production",
   //loaders
   module: {
     rules: [
@@ -19,14 +18,6 @@ module.exports = {
         test: /\.(png|jpg)$/,
         use: ["file-loader"], //loads images
       },
-      // {
-      //   test: /\.css$/,
-      //   use: ["style-loader", "css-loader"], // css stylesheet loader
-      // },
-      // {
-      //   test: /\.scss$/,
-      //   use: ["style-loader", "css-loader", "sass-loader"], // scss stylesheet loader
-      // },
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"], // seperating css stylesheet from the js bundle
@@ -54,7 +45,6 @@ module.exports = {
   },
   //plugins
   plugins: [
-    new TerserPlugin(),
     new MiniCssExtractPlugin({
       filename: "styles.[contenthash].css",
     }),
