@@ -4,8 +4,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin"); //use for cleani
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: {
-    "hello-world": "./src/hello-world.js",
     kiwi: "./src/kiwi.js",
+    "hello-world": "./src/hello-world.js",
   },
   output: {
     filename: "[name].[contenthash].js",
@@ -14,6 +14,12 @@ module.exports = {
     publicPath: "",
   },
   mode: "production",
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      minSize: 3000, //set minimum size to activate code split overiding default
+    },
+  },
   //loaders
   module: {
     rules: [
@@ -53,8 +59,9 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      filename: "Hello-world.html",
-      chucks: ["hello-world"],
+      filename: "hello-world.html",
+      chunks: ["hello-world"],
+
       title: "Hello world",
       template: "src/page-template.hbs",
       description: "hello world",
