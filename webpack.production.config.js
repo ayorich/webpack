@@ -11,7 +11,7 @@ module.exports = {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "./dist"),
     // publicPath: "dist/", //sets to auto from webpack 5
-    publicPath: "",
+    publicPath: "/static/",
   },
   mode: "production",
   optimization: {
