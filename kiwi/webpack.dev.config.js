@@ -9,7 +9,7 @@ module.exports = {
     filename: "[name].js",
     path: path.resolve(__dirname, "./dist"),
     // publicPath: "dist/", //sets to auto from webpack 5
-    publicPath: "",
+    publicPath: "http://localhost:9002/",
   },
   mode: "development",
   devServer: {
@@ -56,8 +56,9 @@ module.exports = {
     }),
     new ModuleFederationPlugin({
       name: "kiwiApp",
-      remotes: {
-        HelloWorldApp: "HelloWorldApp@http://localhost:9001/remoteEntry.js",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./KiwiPage": "./src/components/kiwi-page.js",
       },
     }),
   ],

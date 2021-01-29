@@ -1,6 +1,2 @@
-/dist
-/hello-world/node_modules
-/hello-world/dist
-/kiwi/dist
-/kiwi/node_modules
-/node_modules
+*dist
+*node_modules
