@@ -1,13 +1,15 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin"); //use for cleaning previous built from the dist folder before new builds
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
+
 module.exports = {
   entry: "./src/hello-world.js",
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "./dist"),
     // publicPath: "dist/", //sets to auto from webpack 5
-    publicPath: "",
+    publicPath: "http://localhost:9001/",
   },
   mode: "development",
   devServer: {
@@ -48,6 +50,16 @@ module.exports = {
       title: "Hello world",
       template: "src/page-template.hbs",
       description: "hello world",
+    }),
+    new ModuleFederationPlugin({
+      name: "HelloWorldApp",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./HelloWorldButton":
+          "./src/components/hello-world-button/hello-world-button.js",
+        "./HelloWorldPage":
+          "./src/components/hello-world-page/hello-world-page.js",
+      },
     }),
   ],
 };
