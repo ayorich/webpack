@@ -74,3 +74,41 @@ module.exports = {
     }),
   ],
 };
+
+// Assets modules can replaces
+// raw-loader
+// url-loader
+// file-loader
+
+// {
+//   test: /\.(woff2|woff|ttf)$/,
+//   use: [                               {
+//     {
+//       loader: "file-loader",   =====>  test:/\.tff$/,
+//       options: {                       type:'asset/resource'
+//         name: "[name].[ext]",
+//         outputPath: "fonts/",          }
+//       },
+//     },
+//   ],
+// },
+
+// {
+//   test: /\.svg$/,
+//   use: [                               {
+//     {                                   test: /\.svg$/,
+//       loader: "url-loader",   =====>
+//                                        type:'asset/inline'
+//     },                                 }
+//   ],
+// },
+
+// {
+//   test: /\.txt$/,
+//   use: [                               {
+//     {
+//       loader: "raw-loader",   =====>   test:/\.txt$/,
+//                                        type:'asset/source'
+//     },                                 }
+//   ],
+// },
