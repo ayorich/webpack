@@ -1,4 +1,6 @@
-import "./index.scss";
+// import "./index.scss";
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import HelloWorldButton from "./components/hello-world-button/hello-world-button.js";
 import Heading from "./components/heading/heading.js";
 
